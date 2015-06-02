@@ -43,10 +43,6 @@ INSTALLED_APPS = (
     'polls',
 )
 
-main_dn = 'dc=student,dc=howest,dc=be'
-groups_dn = 'ou=Groups,'+main_dn
-users_dn = 'ou=Users,'+main_dn
-
 AUTH_LDAP_SERVER_URI = "ldap://hogeschool-wvl.be"
 
 AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
