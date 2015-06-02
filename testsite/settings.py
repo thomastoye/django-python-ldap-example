@@ -43,28 +43,20 @@ INSTALLED_APPS = (
     'polls',
 )
 
-main_dn = 'dc=howestedx,dc=local'
+main_dn = 'dc=student,dc=howest,dc=be'
 groups_dn = 'ou=Groups,'+main_dn
 users_dn = 'ou=Users,'+main_dn
 
-AUTH_LDAP_SERVER_URI = "ldap://howest-test-ad.cloudapp.net"
+AUTH_LDAP_SERVER_URI = "ldap://hogeschool-wvl.be"
 
-AUTH_LDAP_BIND_DN = 'cn=Glenn Test,cn=Users,'+main_dn
-AUTH_LDAP_BIND_PASSWORD = "123"
+AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
 
-AUTH_LDAP_USER_SEARCH = LDAPSearch("cn=users,dc=howestedx,dc=local",
-    ldap.SCOPE_SUBTREE, "(userPrincipalName=%(user)s)")
+AUTH_LDAP_USER_DN_TEMPLATE = '%(user)s' # Users log in as name.lastname@student.howest.be, it works
 
 AUTH_LDAP_CONNECTION_OPTIONS = {
     ldap.OPT_REFERRALS: 0,
     ldap.OPT_PROTOCOL_VERSION: 3
 }
-
-#AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-#    "is_active": "cn=active,ou=groups,dc=example,dc=com",
-#    "is_staff": "CN=DjangoTestStaff,CN=Users,DC=howestedx,DC=local",
-#    "is_superuser": "cn=superuser,ou=groups,dc=example,dc=com"
-#}
 
 AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
